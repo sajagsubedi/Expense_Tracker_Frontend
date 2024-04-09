@@ -197,7 +197,7 @@ export default function AddTransaction() {
                 type="submit"
                 onClick={handleSubmit}
             >
-                Signup
+                Add Transaction
             </button>
         </form>
     );
