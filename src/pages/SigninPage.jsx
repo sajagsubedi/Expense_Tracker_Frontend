@@ -1,16 +1,31 @@
 import React,{useState} from "react";
 import {Link} from "react-router-dom"
+import {SIGN_IN} from "../graphql/index.jsx"
+import { useMutation } from "@apollo/client";
 
 export default function SigninPage() {
   const [formData,setFormData]=useState({
     email:"",
     password:""
   })
+
+const [Signin] = useMutation(SIGN_IN, {
+      refetchQueries: ["GetAuthUser"],});
+
   const handleFormChange=(e)=>{
     setFormData((prev)=>({...prev,[e.target.name]:e.target.value,}))
   }
-  const handleSubmit=(e)=>{
-    e.preventDefault()
+  const handleSubmit=async(e)=>{
+    e.preventDefault();
+    try {
+      await Signin({
+				variables: {
+					input: formData,
+				},
+			});
+    } catch (error) {
+      console.error('Error signing in:', error);
+    }
   }
     return (
         <main className="min-w-screen min-h-screen bg-gray-950 flex flex-col items-center pt-20">
@@ -23,7 +38,7 @@ export default function SigninPage() {
                     value={formData.email}
                     name="email"
                     onChange={handleFormChange}
-                    className="w-full bg-gray-800 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 text-base outline-none text-gray-100 py-1 px-3  transition-colors duration-200 ease-in-out"
+                    className="w-full bg-gray-800 rounded border border-gray-700 focus:border-pink-500 focus:ring-2 focus:ring-pink-900 text-base outline-none text-gray-100 py-1 px-3  transition-colors duration-200 ease-in-out"
                 />
                 </div>
                 <div className="flex flex-col w-full">
@@ -33,14 +48,14 @@ export default function SigninPage() {
                      value={formData.password}
                     name="password"
                     onChange={handleFormChange}
-                    className="w-full bg-gray-800 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 text-base outline-none text-gray-100 py-1 px-3  transition-colors duration-200 ease-in-out"
+                    className="w-full bg-gray-800 rounded border border-gray-700 focus:border-pink-500 focus:ring-2 focus:ring-pink-900 text-base outline-none text-gray-100 py-1 px-3  transition-colors duration-200 ease-in-out"
                 />
                 </div>
           
-                <button className="text-white bg-indigo-500 border-0 py-1 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg w-full mt-3" type="submit" onClick={handleSubmit}>
+                <button className="text-white bg-pink-500 border-0 py-1 px-6 focus:outline-none hover:bg-pink-600 rounded text-lg w-full mt-3" type="submit" onClick={handleSubmit}>
                     Signin
                 </button>
-                <p className="text-white self-end">Don't have account? <Link to="/signup" className="border-b border-indigo-500 text-indigo-500">Signup</Link></p>
+                <p className="text-white self-end">Don't have account? <Link to="/signup" className="border-b border-pink-500 text-pink-500">Signup</Link></p>
             </form>
         </main>
     );

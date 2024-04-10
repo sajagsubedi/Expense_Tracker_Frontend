@@ -1,5 +1,7 @@
 import React,{useState} from "react";
 import {Link} from "react-router-dom"
+import {SIGN_UP} from "../graphql/index.jsx"
+import { useMutation } from "@apollo/client";
 
 export default function SignupPage() {
   const [formData,setFormData]=useState({
@@ -8,13 +10,25 @@ export default function SignupPage() {
     password:"",
     gender:""
   })
+  const [Signup] = useMutation(SIGN_UP, {
+    refetchQueries: ["GetAuthUser"],});
+
   const handleFormChange=(e)=>{
     setFormData((prev)=>({...prev,[e.target.name]:e.target.value,}))
   }
-  const handleSubmit=(e)=>{
-    e.preventDefault()
-    console.log(formData)
-  }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await Signup({
+				variables: {
+					input: formData,
+				},
+			});
+    } catch (error) {
+      console.error('Error signing up:', error);
+    }
+  };
+  
     return (
         <main className="min-w-screen min-h-screen bg-gray-950 flex flex-col items-center pt-20">
             <form className="w-80 md:w-96 bg-gray-900 rounded-md drop-shadow-xl flex flex-col px-4 py-3 gap-3 justify-center items-center">
@@ -27,7 +41,7 @@ export default function SignupPage() {
                     value={formData.name}
                     name="name"
                     onChange={handleFormChange}
-                    className="w-full bg-gray-800 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 text-base outline-none text-gray-100 py-1 px-3  transition-colors duration-200 ease-in-out"
+                    className="w-full bg-gray-800 rounded border border-gray-700 focus:border-pink-500 focus:ring-2 focus:ring-pink-900 text-base outline-none text-gray-100 py-1 px-3  transition-colors duration-200 ease-in-out"
                 />
                 </div>
             <div className="flex w-full flex-col" >
@@ -37,7 +51,7 @@ export default function SignupPage() {
                     value={formData.email}
                     name="email"
                     onChange={handleFormChange}
-                    className="w-full bg-gray-800 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 text-base outline-none text-gray-100 py-1 px-3  transition-colors duration-200 ease-in-out"
+                    className="w-full bg-gray-800 rounded border border-gray-700 focus:border-pink-500 focus:ring-2 focus:ring-pink-900 text-base outline-none text-gray-100 py-1 px-3  transition-colors duration-200 ease-in-out"
                 />
                 </div>
                 <div className="flex flex-col w-full">
@@ -47,7 +61,7 @@ export default function SignupPage() {
                      value={formData.password}
                     name="password"
                     onChange={handleFormChange}
-                    className="w-full bg-gray-800 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 text-base outline-none text-gray-100 py-1 px-3  transition-colors duration-200 ease-in-out"
+                    className="w-full bg-gray-800 rounded border border-gray-700 focus:border-pink-500 focus:ring-2 focus:ring-pink-900 text-base outline-none text-gray-100 py-1 px-3  transition-colors duration-200 ease-in-out"
                 />
                 </div>
               <div className="flex w-full flex-col" >
@@ -63,10 +77,10 @@ export default function SignupPage() {
                 </div>
                 </div>
                 </div>
-                <button className="text-white bg-indigo-500 border-0 py-1 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg w-full mt-3" type="submit" onClick={handleSubmit}>
+                <button className="text-white bg-pink-500 border-0 py-1 px-6 focus:outline-none hover:bg-pink-600 rounded text-lg w-full mt-3" type="submit" onClick={handleSubmit}>
                     Signup
                 </button>
-                <p className="text-white self-end">Already have account? <Link to="/signin" className="border-b border-indigo-500 text-indigo-500">Signin</Link></p>
+                <p className="text-white self-end">Already have account? <Link to="/signin" className="border-b border-pink-500 text-pink-500">Signin</Link></p>
             </form>
         </main>
     );

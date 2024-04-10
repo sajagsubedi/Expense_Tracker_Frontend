@@ -1,5 +1,5 @@
 import React from "react";
-import { AddTransaction,TransactionItem } from "../components/index.jsx";
+import { AddTransaction,TransactionItem,ExpenseChart } from "../components/index.jsx";
 
 export default function HomePage() {
   const transactions = [
@@ -56,11 +56,17 @@ export default function HomePage() {
 ];
 
     return (
-        <main className="min-w-screen min-h-screen bg-gray-950 flex flex-col items-center pt-20">
-            <AddTransaction />
-          <section className="w-full md:px-16 py-10 px-10 flex flex-wrap gap-5 justify-around">
+        <main className="min-w-screen min-h-screen bg-gray-950 xl:px-20 px-8 flex flex-col items-center pt-20">
+           <section className="flex flex-col md:flex-row gap-5 px-10 items-center justify-around">
+		    <ExpenseChart/>
+			<AddTransaction />
+		   </section>
+		   <section className="w-full mt-20">
+			<h2 className="text-4xl text-center font-bold text-white">History</h2>
+          <div className="w-full md:px-16 py-10 px-10 flex flex-wrap gap-5 justify-around">
           {transactions.map((transactionItem,i)=>(<TransactionItem key={i} transactionItem={transactionItem}/>))}
-          </section>
+          </div>
+		   </section>
         </main>
     );
 }

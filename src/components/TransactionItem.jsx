@@ -1,5 +1,6 @@
-import { MdDelete } from "react-icons/md";
+import { MdDelete ,MdOutlineDescription,MdPayment,MdAttachMoney,MdLocationOn } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
+
 
 export default function TransactionItem({ transactionItem }) {
     let { description, paymentType, category, amount, location, date } =
@@ -14,7 +15,7 @@ export default function TransactionItem({ transactionItem }) {
     description = description[0]?.toUpperCase() + description.slice(1);
     return (
         <div
-            className={`w-full h-auto rounded md:w-[30%] flex flex-col bg-gradient-to-br gap-3 px-3 ${cardClass} p-2`}
+            className={`w-full h-auto rounded md:w-[30%] sm:w-[45%] flex flex-col bg-gradient-to-br gap-3 px-3 ${cardClass} p-2`}
         >
             <div className="w-full flex justify-between">
                 <h2 className="text-xl font-bold text-white">{category}</h2>
@@ -23,12 +24,11 @@ export default function TransactionItem({ transactionItem }) {
                     <FaEdit className="text-white" />
                 </div>
             </div>
-            <div className="flex flex-col gap-2 text-white">
-                <p><span className="font-medium mr-1">Description:</span>{description}</p>
-                <p><span className="font-medium mr-1">Payment Type:</span>{paymentType}</p>
-                <p><span className="font-medium mr-1">Amount :</span>{amount}</p>
-                <p><span className="font-medium mr-1">Location :</span>{location}</p>
-            </div>
-        </div>
+                <p className="flex text-white"><span className="font-medium flex items-center w-max h-max"><MdOutlineDescription/> Description:</span>{description}</p>
+                <p className="flex text-white"><span className="font-medium flex items-center w-max h-max"><MdPayment/>  Payment Type: </span>{paymentType}</p>
+                <p className="flex text-white"><span className="font-medium flex items-center w-max h-max"><MdAttachMoney/> Amount: </span>{amount}</p>
+                <p className="flex text-white"><span className="font-medium flex items-center w-max h-max"><MdLocationOn />Location: </span>{location}</p>
+                <p className="flex text-black text-sm font-medium self-">{date}</p>
+  </div>
     );
 }
