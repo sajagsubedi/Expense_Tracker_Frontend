@@ -1,4 +1,4 @@
-import { MdDelete ,MdOutlineDescription,MdPayment,MdAttachMoney,MdLocationOn } from "react-icons/md";
+import { MdDelete ,MdOutlineDescription,MdPayment,MdAttachMoney,MdLocationOn,MdDateRange } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
 
 
@@ -24,11 +24,11 @@ export default function TransactionItem({ transactionItem }) {
                     <FaEdit className="text-white" />
                 </div>
             </div>
-                <p className="flex text-white"><span className="font-medium flex items-center w-max h-max"><MdOutlineDescription/> Description:</span>{description}</p>
-                <p className="flex text-white"><span className="font-medium flex items-center w-max h-max"><MdPayment/>  Payment Type: </span>{paymentType}</p>
-                <p className="flex text-white"><span className="font-medium flex items-center w-max h-max"><MdAttachMoney/> Amount: </span>{amount}</p>
-                <p className="flex text-white"><span className="font-medium flex items-center w-max h-max"><MdLocationOn />Location: </span>{location}</p>
-                <p className="flex text-black text-sm font-medium self-">{date}</p>
+                <p className="flex text-white gap-1"><span className="font-medium flex items-center w-max h-max"><MdOutlineDescription/> Description:</span>{description}</p>
+                <p className="flex text-white gap-1"><span className="font-medium flex items-center w-max h-max"><MdPayment/>  Payment Type: </span>{paymentType}</p>
+                <p className="flex text-white gap-1"><span className="font-medium flex items-center w-max h-max"><MdAttachMoney/> Amount: </span>{amount}</p>
+                <p className="flex text-white gap-1"><span className="font-medium flex items-center w-max h-max"><MdLocationOn />Location: </span>{location}</p>
+                <p className="flex text-white gap-1"><span className="font-medium flex items-center w-max h-max"><MdDateRange />Date: </span>{date}</p>
   </div>
     );
 }

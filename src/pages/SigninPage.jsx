@@ -16,6 +16,7 @@ const [Signin] = useMutation(SIGN_IN, {
     setFormData((prev)=>({...prev,[e.target.name]:e.target.value,}))
   }
   const handleSubmit=async(e)=>{
+    console.log("Clicked",formData)
     e.preventDefault();
     try {
       await Signin({

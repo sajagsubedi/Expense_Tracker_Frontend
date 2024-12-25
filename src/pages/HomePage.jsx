@@ -58,7 +58,7 @@ export default function HomePage() {
     return (
         <main className="min-w-screen min-h-screen bg-gray-950 xl:px-20 px-8 flex flex-col items-center pt-20">
            <section className="flex flex-col md:flex-row gap-5 px-10 items-center justify-around">
-		    <ExpenseChart/>
+		    <ExpenseChart expenseData={[40,30,20]}/>
 			<AddTransaction />
 		   </section>
 		   <section className="w-full mt-20">

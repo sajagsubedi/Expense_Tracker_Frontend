@@ -17,8 +17,8 @@ export default function App() {
 
   return (
     <Routes>
-      <Route exact path="/" element={data?.authUser?<HomePage />:<Navigate to="/"/>} />
-      <Route exact path="/signup" element={!data?.authUser?<SignupPage />:<Navigate to="/signin"/>} />
+      <Route exact path="/" element={data?.authUser?<HomePage />:<Navigate to="/signup"/>} />
+      <Route exact path="/signup" element={!data?.authUser?<SignupPage />:<Navigate to="/"/>} />
       <Route exact path="/signin" element={!data?.authUser?<SigninPage />:<Navigate to="/"/>} />
       <Route exact path="/transaction/:id" element={<TransactionPage />} />
       <Route exact path="*" element={<NotFoundPage />} />

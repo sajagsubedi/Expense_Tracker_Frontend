@@ -3,13 +3,13 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const ExpenseChart = () => {
+const ExpenseChart = ({expenseData}) => {
   const chartData = {
     labels: ["Saving", "Expense", "Investment"],
     datasets: [
       {
         label: "%",
-        data: [13, 8, 3],
+        data:[...expenseData],
         backgroundColor: [
           "rgba(75, 192, 192)",
           "rgba(255, 99, 132)",
@@ -23,7 +23,7 @@ const ExpenseChart = () => {
         borderWidth: 1,
         borderRadius: 30,
         spacing: 10,
-        cutout: 130,
+        cutout: 160,
       },
     ],
   };
