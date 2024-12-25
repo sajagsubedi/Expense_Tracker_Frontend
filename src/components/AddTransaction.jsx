@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { FaChevronDown } from "react-icons/fa";
-import { CREATE_TRANSACTION } from "../graphql/index.jsx";
+import {
+  CREATE_TRANSACTION,
+  GET_TRANSACTIONS,
+  GET_CATEGORY_STATISTICS,
+} from "../graphql/index.jsx";
 import { useMutation } from "@apollo/client";
 
 export default function AddTransaction() {
@@ -18,7 +22,7 @@ export default function AddTransaction() {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
   const [CreateTransaction] = useMutation(CREATE_TRANSACTION, {
-    refetchQueries: [],
+    refetchQueries: [GET_TRANSACTIONS, GET_CATEGORY_STATISTICS],
   });
 
   const handleAmountChange = (e) => {
@@ -45,14 +49,14 @@ export default function AddTransaction() {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try{
-        await CreateTransaction({
-            variables: {
-                input: formData,
-            },
-        });
-    }catch(error){
-        console.error('Error creating transaction:', error);
+    try {
+      await CreateTransaction({
+        variables: {
+          input: formData,
+        },
+      });
+    } catch (error) {
+      console.error("Error creating transaction:", error);
     }
   };
   return (

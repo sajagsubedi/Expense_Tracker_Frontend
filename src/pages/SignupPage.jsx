@@ -1,6 +1,6 @@
 import React,{useState} from "react";
 import {Link} from "react-router-dom"
-import {SIGN_UP} from "../graphql/index.jsx"
+import {SIGN_UP,GET_AUTHUSER} from "../graphql/index.jsx"
 import { useMutation } from "@apollo/client";
 
 export default function SignupPage() {
@@ -11,7 +11,7 @@ export default function SignupPage() {
     gender:""
   })
   const [Signup] = useMutation(SIGN_UP, {
-    refetchQueries: ["GetAuthUser"],});
+    refetchQueries: [GET_AUTHUSER],});
 
   const handleFormChange=(e)=>{
     setFormData((prev)=>({...prev,[e.target.name]:e.target.value,}))
