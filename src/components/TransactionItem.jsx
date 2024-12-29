@@ -8,7 +8,11 @@ import {
 } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
 
-export default function TransactionItem({ transactionItem, openEditModel }) {
+export default function TransactionItem({
+  transactionItem,
+  openEditModel,
+  openDeleteModel,
+}) {
   let { _id, description, paymentType, category, amount, location, date } =
     transactionItem;
   const categoryColor = {
@@ -26,7 +30,12 @@ export default function TransactionItem({ transactionItem, openEditModel }) {
       <div className="w-full flex justify-between">
         <h2 className="text-xl font-bold text-white">{category}</h2>
         <div className="flex gap-2">
-          <MdDelete className="text-white" />
+          <MdDelete
+            className="text-white"
+            onClick={() => {
+              openDeleteModel(transactionItem._id);
+            }}
+          />
           <FaEdit
             className="text-white"
             onClick={() => {

@@ -11,7 +11,7 @@ const ExpenseChart = ({ expenseData }) => {
   );
   if (categoryLoading) return null;
   const labels = categoryStatistics.categoryStatistics.map(
-    (val) => val.category.slice(0,1).toUpperCase()+val.category.slice(1)
+    (val) => val.category.slice(0, 1).toUpperCase() + val.category.slice(1)
   );
   const dataValue = categoryStatistics.categoryStatistics.map(
     (val) => val.amount
@@ -23,15 +23,11 @@ const ExpenseChart = ({ expenseData }) => {
         label: "%",
         data: dataValue,
         backgroundColor: [
-          "rgba(75, 192, 192)",
-          "rgba(255, 99, 132)",
-          "rgba(54, 162, 235)",
+          "#10B981",
+          "#EC4899",
+          "#3B82F6",
         ],
-        borderColor: [
-          "rgba(75, 192, 192)",
-          "rgba(255, 99, 132)",
-          "rgba(54, 162, 235, 1)",
-        ],
+        borderColor: ["#10B981", "#EC4899", "#3B82F6"],
         borderWidth: 1,
         borderRadius: 30,
         spacing: 10,

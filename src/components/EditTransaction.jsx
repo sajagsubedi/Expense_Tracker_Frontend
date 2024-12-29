@@ -66,14 +66,14 @@ export default function EditTransaction(props) {
       });
       toast.success("Transaction updated succesfully!");
     } catch (error) {
-      toast.error("Error while creating transcation!");
+      toast.error("Error while updating transcation!");
     } finally {
       closeModel();
     }
   };
 
   return (
-    <div className="h-auto w-auto mx-5 backdrop-blur-3xl bg-pink-500 bg-opacity-10 absolute top-10 box-border rounded-lg p-10 shadow-2xl flex flex-col items-center z-10">
+    <div className="h-auto w-auto mx-5 backdrop-blur-3xl bg-pink-500 bg-opacity-10 fixed top-10 box-border rounded-lg p-10 shadow-2xl flex flex-col items-center z-10">
       <button
         onClick={closeModel}
         className="text-gray-300 text-3xl absolute right-0 top-0 m-3"

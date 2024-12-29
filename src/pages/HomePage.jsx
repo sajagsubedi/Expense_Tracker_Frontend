@@ -4,13 +4,16 @@ import {
   TransactionItem,
   ExpenseChart,
   EditTransaction,
+  DeleteTransactionModel,
 } from "../components/index.jsx";
 import { GET_TRANSACTIONS } from "../graphql/index.jsx";
 import { useQuery } from "@apollo/client";
 
 export default function HomePage() {
-  const [transactionActive, setTransactionActive] = useState(false);
   const [transactionData, setTransactionData] = useState();
+  const [transactionActive, setTransactionActive] = useState(false);
+  const [deleteModelActive, setDeleteModelActive] = useState(false);
+  const [toDeleteTranscation, setToDeleteTranscation] = useState();
 
   const { loading, data } = useQuery(GET_TRANSACTIONS);
   if (loading) return <h2>Loading...</h2>;
@@ -27,10 +30,24 @@ export default function HomePage() {
       location,
       amount,
     });
-    setTransactionActive(true); // Correct state update
+    setTransactionActive(true);
+    setDeleteModelActive(false);
+    setToDeleteTranscation("");
   };
+
   const closeModel = () => {
-    setTransactionActive(false); // Close the model by setting active to false
+    setTransactionActive(false);
+  };
+
+  const openDeleteModel = (transId) => {
+    setToDeleteTranscation(transId);
+    setTransactionActive(false);
+    setDeleteModelActive(true);
+  };
+
+  const closeDeleteModel = () => {
+    setDeleteModelActive(false);
+    setToDeleteTranscation("");
   };
 
   return (
@@ -39,6 +56,12 @@ export default function HomePage() {
         <EditTransaction
           closeModel={closeModel}
           transactionData={transactionData}
+        />
+      )}
+      {deleteModelActive && (
+        <DeleteTransactionModel
+          transactionId={toDeleteTranscation}
+          closeDeleteModel={closeDeleteModel}
         />
       )}
       <section className="flex flex-col md:flex-row gap-5 items-center justify-between">
@@ -60,6 +83,7 @@ export default function HomePage() {
                 key={i}
                 transactionItem={transactionItem}
                 openEditModel={openEditModel}
+                openDeleteModel={openDeleteModel}
               />
             ))}
         </div>

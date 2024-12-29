@@ -188,7 +188,7 @@ export default function AddTransaction({isSingle}) {
           <input
             placeholder="Pokhara,Kathmandu..."
             name="location"
-            vlaue={formData.location}
+            value={formData.location}
             onChange={handleFormChange}
             className="w-full h-10 text-gray-200 border-gray-700 rounded bg-gray-800 focus:ring-2 focus:ring-pink-900 border focus:border-pink-500 outline-none"
           />
