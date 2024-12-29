@@ -6,8 +6,9 @@ import {
   GET_CATEGORY_STATISTICS,
 } from "../graphql/index.jsx";
 import { useMutation } from "@apollo/client";
+import { toast } from 'react-toastify';
 
-export default function AddTransaction() {
+export default function AddTransaction({isSingle}) {
   const [formData, setFormData] = useState({
     description: "",
     paymentType: "Select",
@@ -55,12 +56,22 @@ export default function AddTransaction() {
           input: formData,
         },
       });
+      toast.success("Transaction added succesfully!")
     } catch (error) {
-      console.error("Error creating transaction:", error);
+      toast.error("Error while creating transcation!")
+    } finally {
+      setFormData({
+        description: "",
+        paymentType: "Select",
+        category: "Select",
+        date: "",
+        location: "",
+        amount: "",
+      });
     }
   };
   return (
-    <form className="w-full md:w-1/2 bg-gray-900 m-5 rounded-md drop-shadow-xl flex flex-col px-4 py-3 gap-3 justify-center items-center">
+    <form className={`w-full ${isSingle?"md:w-max":"md:w-1/2"}  bg-gray-900 m-5 rounded-md drop-shadow-xl flex flex-col px-4 py-3 gap-3 justify-center items-center`}>
       <div className="flex w-full flex-col">
         <label
           htmlFor="description"

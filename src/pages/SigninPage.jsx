@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { SIGN_IN, GET_AUTHUSER } from "../graphql/index.jsx";
 import { useMutation } from "@apollo/client";
+import { toast } from 'react-toastify';
 
 export default function SigninPage() {
   const [formData, setFormData] = useState({
@@ -25,7 +26,9 @@ export default function SigninPage() {
           input: formData,
         },
       });
+      toast.success("Sign In successfully!")
     } catch (error) {
+      toast.error("Error while signing in!")
       console.error("Error signing in:", error);
     }
   };
