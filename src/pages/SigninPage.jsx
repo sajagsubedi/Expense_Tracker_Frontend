@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { SIGN_IN, GET_AUTHUSER } from "../graphql/index.jsx";
 import { useMutation } from "@apollo/client";
@@ -18,7 +18,6 @@ export default function SigninPage() {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
   const handleSubmit = async (e) => {
-    console.log("Clicked", formData);
     e.preventDefault();
     try {
       await Signin({
@@ -72,7 +71,7 @@ export default function SigninPage() {
           Signin
         </button>
         <p className="text-white self-end">
-          Don't have account?{" "}
+          Don&apos;t have account?{" "}
           <Link to="/signup" className="border-b border-pink-500 text-pink-500">
             Signup
           </Link>

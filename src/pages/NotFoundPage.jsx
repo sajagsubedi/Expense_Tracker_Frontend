@@ -1,7 +1,3 @@
-import React from "react"
-
-export default function NotFoundPage(){
-  return(
-    <h1 className="text-xl">Not found Page</h1>
-    )
+export default function NotFoundPage() {
+  return <h1 className="text-xl">Not found Page</h1>;
 }

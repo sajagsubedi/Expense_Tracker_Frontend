@@ -1,4 +1,4 @@
-import { SIGN_UP, SIGN_IN } from "./mutations/user.mutation.jsx";
+import { SIGN_UP, SIGN_IN, LOG_OUT } from "./mutations/user.mutation.jsx";
 import { GET_AUTHUSER } from "./queries/user.query.jsx";
 import {
   CREATE_TRANSACTION,
@@ -19,4 +19,5 @@ export {
   GET_CATEGORY_STATISTICS,
   UPDATE_TRANSACTION,
   DELETE_TRANSACTION,
+  LOG_OUT,
 };

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { SIGN_UP, GET_AUTHUSER } from "../graphql/index.jsx";
 import { useMutation } from "@apollo/client";
